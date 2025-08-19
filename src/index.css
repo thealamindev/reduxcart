@@ -1,0 +1,15 @@
+body{
+   font-family: "DM Sans", sans-serif;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0; /* Remove default padding */
+  }
+  input[type="color"]::-webkit-color-swatch {
+    border-radius: 9999px; /* Matches Tailwind's rounded-full */
+    border: none; /* Remove default border */
+  }
+  input[type="color"]::-moz-color-swatch {
+    border-radius: 9999px; /* For Firefox, if supported */
+    border: none;
+  }
