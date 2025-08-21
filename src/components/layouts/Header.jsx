@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "../Container";
 import Flex from "../Flex";
 import Image from "../Image";
@@ -7,8 +7,14 @@ import { HiOutlineBars3BottomLeft } from "react-icons/hi2";
 import Heading from "../Heading";
 import { FaSearch, FaUser, FaCaretDown, FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  let [showCart, setShowCart]= useState(false)
+  let data = useSelector((state)=>state.cart.value)
+  console.log(data);
+  
+
   return (
     <>
       <div className="py-[30px]">
@@ -69,7 +75,21 @@ const Header = () => {
                 <FaUser />
                 <FaCaretDown />
               </div>
-              <FaShoppingCart />
+              <FaShoppingCart onClick={()=>setShowCart(!showCart)}/>
+             {showCart && 
+              <div className="w-[350px] bg-teal-300 h-screen absolute top-0 right-0">
+                  <FaShoppingCart onClick={()=>setShowCart(!showCart)}/>
+                    <ul>
+                      {data.map(item=>(
+                       <>
+                        <li>{item.title}</li>
+                        <li>{item.price}</li>
+                        <li>{item.quantity}</li>
+                       </>
+                        ))
+                      }
+                    </ul>
+              </div>}
             </div>
           </Flex>
         </Container>
